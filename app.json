@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "MemoryPulse",
+    "name": "The Memory Pulse",
     "slug": "memory-retention-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,7 +17,7 @@
       "bundleIdentifier": "com.memorypulse.app",
       "buildNumber": "1",
       "infoPlist": {
-        "NSUserNotificationUsageDescription": "MemoryPulse sends daily reminders to help you build a memory habit."
+        "NSUserNotificationUsageDescription": "The Memory Pulse sends daily reminders to help you build a memory habit."
       }
     },
     "android": {
