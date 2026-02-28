@@ -6,13 +6,19 @@
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
+    "icon": "./assets/icon.png",
     "splash": {
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#1a1a2e"
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.memorypulse.app"
+      "bundleIdentifier": "com.memorypulse.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSUserNotificationUsageDescription": "MemoryPulse sends daily reminders to help you build a memory habit."
+      }
     },
     "android": {
       "adaptiveIcon": {
