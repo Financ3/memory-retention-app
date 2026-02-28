@@ -15,7 +15,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.memorypulse.app",
-      "buildNumber": "1",
+
       "infoPlist": {
         "NSUserNotificationUsageDescription": "The Memory Pulse sends daily reminders to help you build a memory habit."
       }
