@@ -39,6 +39,12 @@
           "defaultChannel": "default"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b3b32d74-bf3b-4dc9-9d1c-a46cc24448f8"
+      }
+    },
+    "owner": "tanner.francis11"
   }
 }
