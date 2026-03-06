@@ -38,6 +38,8 @@ export default function NewFactScreen({ fact, streak, onDone }) {
         <TouchableOpacity style={styles.button} onPress={onDone} activeOpacity={0.85}>
           <Text style={styles.buttonText}>Got it, I'll remember! ✓</Text>
         </TouchableOpacity>
+
+        <Text style={styles.endOfPage}>— You've reached the end of the viewable content —</Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -124,5 +126,12 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
     color: '#FFFFFF',
+  },
+  endOfPage: {
+    marginTop: 24,
+    textAlign: 'center',
+    fontSize: 11,
+    color: '#4A5568',
+    fontStyle: 'italic',
   },
 });

@@ -74,6 +74,8 @@ export default function QuizScreen({ fact, streak, onAnswer }) {
             </TouchableOpacity>
           ))}
         </View>
+
+        <Text style={styles.endOfPage}>— You've reached the end of the viewable content —</Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -177,5 +179,12 @@ const styles = StyleSheet.create({
   },
   choiceTextDimmed: {
     color: '#718096',
+  },
+  endOfPage: {
+    marginTop: 32,
+    textAlign: 'center',
+    fontSize: 11,
+    color: '#4A5568',
+    fontStyle: 'italic',
   },
 });

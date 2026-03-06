@@ -60,6 +60,8 @@ export default function QuizResultScreen({ wasCorrect, newStreak, onContinue }) 
         <TouchableOpacity style={styles.button} onPress={onContinue} activeOpacity={0.85}>
           <Text style={styles.buttonText}>See Today's Fact →</Text>
         </TouchableOpacity>
+
+        <Text style={styles.endOfPage}>— You've reached the end of the viewable content —</Text>
       </View>
     </SafeAreaView>
   );
@@ -152,5 +154,15 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
     color: '#FFFFFF',
+  },
+  endOfPage: {
+    position: 'absolute',
+    bottom: 16,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+    fontSize: 11,
+    color: '#4A5568',
+    fontStyle: 'italic',
   },
 });

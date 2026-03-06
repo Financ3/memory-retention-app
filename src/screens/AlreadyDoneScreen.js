@@ -41,6 +41,8 @@ export default function AlreadyDoneScreen({ streak }) {
             Try recalling today's fact a few times before bed — spacing out your reviews dramatically improves retention.
           </Text>
         </View>
+
+        <Text style={styles.endOfPage}>— You've reached the end of the viewable content —</Text>
       </View>
     </SafeAreaView>
   );
@@ -123,5 +125,15 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#A0AEC0',
     lineHeight: 20,
+  },
+  endOfPage: {
+    position: 'absolute',
+    bottom: 16,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+    fontSize: 11,
+    color: '#4A5568',
+    fontStyle: 'italic',
   },
 });
