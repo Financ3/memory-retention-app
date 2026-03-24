@@ -5,16 +5,18 @@ const KEYS = {
   STREAK: '@mem:streak',
   LAST_ACCESS: '@mem:lastAccessDate',
   AFTERNOON_ID: '@mem:afternoonNotifId',
+  SEEN_FACTS: '@mem:seenFactIds',
 };
 
 export async function loadState() {
   try {
-    const [pendingFactRaw, streakRaw, lastAccessDate, afternoonNotifId] =
+    const [pendingFactRaw, streakRaw, lastAccessDate, afternoonNotifId, seenFactsRaw] =
       await AsyncStorage.multiGet([
         KEYS.PENDING_FACT,
         KEYS.STREAK,
         KEYS.LAST_ACCESS,
         KEYS.AFTERNOON_ID,
+        KEYS.SEEN_FACTS,
       ]);
 
     let pendingFact = null;
@@ -26,11 +28,21 @@ export async function loadState() {
       pendingFact = null;
     }
 
+    let seenFactIds = [];
+    try {
+      if (seenFactsRaw[1]) {
+        seenFactIds = JSON.parse(seenFactsRaw[1]);
+      }
+    } catch {
+      seenFactIds = [];
+    }
+
     return {
       pendingFact,
       streak: streakRaw[1] ? parseInt(streakRaw[1], 10) : 0,
       lastAccessDate: lastAccessDate[1] || null,
       afternoonNotifId: afternoonNotifId[1] || null,
+      seenFactIds,
     };
   } catch (error) {
     console.error('Failed to load state:', error);
@@ -39,6 +51,7 @@ export async function loadState() {
       streak: 0,
       lastAccessDate: null,
       afternoonNotifId: null,
+      seenFactIds: [],
     };
   }
 }
@@ -72,6 +85,14 @@ export async function saveLastAccessDate(dateStr) {
     await AsyncStorage.setItem(KEYS.LAST_ACCESS, dateStr);
   } catch (error) {
     console.error('Failed to save last access date:', error);
+  }
+}
+
+export async function saveSeenFactIds(ids) {
+  try {
+    await AsyncStorage.setItem(KEYS.SEEN_FACTS, JSON.stringify(ids));
+  } catch (error) {
+    console.error('Failed to save seen fact ids:', error);
   }
 }
 

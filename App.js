@@ -9,6 +9,7 @@ import {
   saveStreak,
   saveLastAccessDate,
   saveAfternoonNotifId,
+  saveSeenFactIds,
   getTodayDateString,
 } from './src/utils/storage';
 import {
@@ -32,6 +33,7 @@ export default function App() {
   const [pendingFact, setPendingFact] = useState(null);
   const [todayFact, setTodayFact] = useState(null);
   const [quizResult, setQuizResult] = useState(null);
+  const [seenFactIds, setSeenFactIds] = useState([]);
 
   useEffect(() => {
     initializeApp();
@@ -68,13 +70,17 @@ export default function App() {
     }
 
     setStreak(state.streak);
+    setSeenFactIds(state.seenFactIds);
 
     if (state.pendingFact !== null) {
       setPendingFact(state.pendingFact);
       setCurrentView('quiz');
     } else {
       // First ever launch — go straight to new fact
-      const firstFact = pickRandomFact(null);
+      const firstFact = pickRandomFact(state.seenFactIds);
+      const updatedSeen = [...state.seenFactIds, firstFact.id];
+      await saveSeenFactIds(updatedSeen);
+      setSeenFactIds(updatedSeen);
       setTodayFact(firstFact);
       setCurrentView('new_fact');
     }
@@ -89,8 +95,10 @@ export default function App() {
   }
 
   async function handleContinueFromResult() {
-    // Pick a new fact (not the same as the one they were just quizzed on)
-    const newFact = pickRandomFact(pendingFact?.id ?? null);
+    const newFact = pickRandomFact(seenFactIds);
+    const updatedSeen = [...seenFactIds, newFact.id];
+    await saveSeenFactIds(updatedSeen);
+    setSeenFactIds(updatedSeen);
     setTodayFact(newFact);
     // Save this new fact as the pending one for tomorrow's quiz
     await savePendingFact(newFact);
